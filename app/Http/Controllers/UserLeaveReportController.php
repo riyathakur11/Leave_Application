@@ -20,6 +20,7 @@ class UserLeaveReportController extends Controller
             ->get();
                                     // dd($approvedLeaves);
             $approvedLeavesCount = $approvedLeaves->count(); 
+            
             $pendingLeavesCount = $totalLeaveData->total_leaves - $approvedLeavesCount;
 
             $userLeaves = UserLeaves::join('users', 'user_leaves.user_id', '=', 'users.id')->where('user_leaves.user_id', $id)->orderBy('id', 'desc')->get(['user_leaves.*', 'users.first_name']);
